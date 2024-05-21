@@ -11,15 +11,17 @@ const db = require("./database.js")
 app.get('/movies/:title', async (req, res) => {
     try {
         const movieResult = await db.searchMovies(req.params.title);
+        console.log(movieResult.page);
         let movieList = movieResult.results;
 
         if (movieResult.total_results > 10) {
             movieList = movieList.slice(0, 10);
         }
 
-        const editedList = editMovieList(movieList);
+        const editedList = await editMovieList(movieList);
         
         res.json(editedList);
+        res.send();
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -36,7 +38,7 @@ async function editMovieList(movieList) {
 
         let listItem = {
             movie_id: movieList[i].id,
-            title: movieList[i].original_title,
+            title: movieList[i].title,
             poster_image_url: "https://image.tmdb.org/t/p/original/" + movieList[i].poster_path,
             popularity_summary: popularity + " out of " + vote_count
         };

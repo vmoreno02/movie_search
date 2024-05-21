@@ -18,14 +18,22 @@ async function searchMovies(query) {
     }
     };
 
-    return fetch(url, options)
+    const res = await fetch(url, options)
     .then(res => res.json())
-    .then(json => console.log(json))
     .catch(err => console.error('error:' + err));
+
+    return res;
 }
 
-async function test() {
-    const res = await searchMovies("the avengers");
-}
+module.exports = {
+    searchMovies
+};
 
-test();
+// async function test() {
+//     const res = await searchMovies("Gli invincibili tre");
+//     console.log(res);
+//     console.log(res.total_pages);
+//     console.log(res.results);
+// }
+
+// test();
