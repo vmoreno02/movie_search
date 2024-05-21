@@ -1,0 +1,1 @@
+This project is for the OIT coding challenge. It's a simple app that uses a Vue frontend and a Node backend to access the Movie Database and search for movies.
