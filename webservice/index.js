@@ -40,7 +40,7 @@ async function editMovieList(movieList) {
             movie_id: movieList[i].id,
             title: movieList[i].title,
             poster_image_url: "https://image.tmdb.org/t/p/original/" + movieList[i].poster_path,
-            popularity_summary: popularity + " out of " + vote_count
+            popularity_summary: popularity + " from " + vote_count + " votes"
         };
 
         editedList.push(listItem);
